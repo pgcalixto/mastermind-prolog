@@ -1,4 +1,16 @@
 
+:- module(check_answer, [check_answer/4]).
+
+/**
+ * check_answer(+Answer, +Try, -Correct, -Regular) is det
+ *
+ * Checks the number of correct and regular elements in the try.
+ *
+ * It calls `check_answer_aux()` to retrieve Correct and Regular.
+ */
+check_answer(X, Y, Correct, Regular) :-
+    check_answer_aux(X, Y, X, Y, Correct, Regular).
+
 /**
  * check_answer_aux(+AnswerSlice, +TrySlice, ++AnswerFull, ++TryFull, -Correct,
                     -Regular) is det
@@ -32,13 +44,3 @@ check_answer_aux([_|X2], [Y1|Y2], X, Y, Correct, Regular) :-
 % case which the element is neither correct nor regular
 check_answer_aux([_|X2], [_|Y2], X, Y, Correct, Regular) :-
     check_answer_aux(X2, Y2, X, Y, Correct, Regular).
-
-/**
- * check_answer(+Answer, +Try, -Correct, -Regular) is det
- *
- * Checks the number of correct and regular elements in the try.
- *
- * It calls `check_answer_aux()` to retrieve Correct and Regular.
- */
-check_answer(X, Y, Correct, Regular) :-
-    check_answer_aux(X, Y, X, Y, Correct, Regular).
