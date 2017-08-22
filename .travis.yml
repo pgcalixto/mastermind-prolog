@@ -1,0 +1,10 @@
+
+sudo: required
+dist: trusty
+
+before_script:
+  - sudo apt-get -qq update
+  - sudo apt-get install -qq swi-prolog-nox
+
+script:
+  - swipl -s test.pl
