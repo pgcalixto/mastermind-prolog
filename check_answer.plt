@@ -13,6 +13,6 @@ test(even_answer_with_reversed_try) :-
 test(odd_answer_with_reversed_try) :-
     X = [a,b,c,d,e],
     reverse(X, Y),
-    check_answer(X, Y, 1, 3).
+    check_answer(X, Y, 1, 4).
 
 :- end_tests(check_answer).
