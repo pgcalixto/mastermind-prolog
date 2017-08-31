@@ -28,12 +28,13 @@ check_answer(X, Y, Correct, Regular) :-
  * and TrySlice as the new AnswerSlice and TrySlice lists.
  */
 % base case
-check_answer_aux([], [], _, _, 0, 0).
+check_answer_aux([], [], _, _, 0, 0) :- !.
 
 % case which the element is in the correct position
 check_answer_aux([X1|X2], [X1|Y2], X, Y, Correct, Regular) :-
     check_answer_aux(X2, Y2, X, Y, Correct1, Regular),
-    Correct is Correct1 + 1.
+    Correct is Correct1 + 1,
+    !.
 
 % case which the element is not in the correct position, but exists in other
 % positions, i.e., it is a regular
@@ -41,7 +42,8 @@ check_answer_aux([X1|X2], [Y1|Y2], X, Y, Correct, Regular) :-
     X1 \= Y1,
     member(Y1, X),
     check_answer_aux(X2, Y2, X, Y, Correct, Regular1),
-    Regular is Regular1 + 1.
+    Regular is Regular1 + 1,
+    !.
 
 % case which the element is neither correct nor regular
 check_answer_aux([X1|X2], [Y1|Y2], X, Y, Correct, Regular) :-
