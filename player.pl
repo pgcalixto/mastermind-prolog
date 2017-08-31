@@ -25,15 +25,10 @@ make_guess(Pool, Correct, Regular, Guess) :-
  */
 make_guess_aux(WholePool, [Guess], Correct, Regular, Guess, Score) :-
     pool:update_pool(WholePool, Guess, Correct, Regular, NewPool),
-    length(NewPool, Score),
-    !.
+    length(NewPool, Score).
 
 make_guess_aux(WholePool, [PoolH|PoolT], Correct, Regular, PoolH, Score) :-
     make_guess_aux(WholePool, PoolT, Correct, Regular, _, Score1),
     pool:update_pool(WholePool, PoolH, Correct, Regular, NewPool),
-    length(NewPool, Score),
-    Score =< Score1,
-    !.
-
-make_guess_aux(WholePool, [_|PoolT], Correct, Regular, Guess, Score) :-
-    make_guess_aux(WholePool, PoolT, Correct, Regular, Guess, Score).
+    length(NewPool, Score2),
+    ((Score2 =< Score1, !, Score = Score2); (Score = Score1)).
