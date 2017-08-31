@@ -1,6 +1,6 @@
 
 :- [check_answer].
 :- [pool].
-:- [mastermind].
+:- [player].
 :- load_test_files([]).
 :- (run_tests, halt); halt(1).

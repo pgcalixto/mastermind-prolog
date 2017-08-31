@@ -1,10 +1,7 @@
-% #!/usr/bin/swipl
 
-:- module(mastermind, [make_guess/4]).
+:- module(player, [make_guess/4]).
 
-:- use_module(answer_generator).
 :- use_module(pool).
-:- use_module(check_answer).
 
 /**
  * make_guess(+Pool, +Correct, +Regular, -Guess)
