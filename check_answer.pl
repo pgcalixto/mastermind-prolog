@@ -2,7 +2,7 @@
 :- module(check_answer, [check_answer/4]).
 
 /**
- * check_answer(+Answer, ?Try, ?Correct, ?Regular) is det
+ * check_answer(+Answer, +Try, ?Correct, ?Regular) is det
  *
  * Checks the number of correct and regular elements in the try.
  *
