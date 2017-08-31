@@ -1,5 +1,6 @@
 
 :- module(pool, [pool/1, update_pool/5]).
+:- use_module(check_answer).
 
 /**
  * pool(-List)
@@ -18,12 +19,13 @@ pool(Pool) :-
  * NewPool should receive the updated pool containing all possible guesses if
  * Guess was the code and the guesses feedback was Correct and Regular.
  */
-update_pool([], _, _, _, []).
+update_pool([], _, _, _, []) :- !.
 
 update_pool([PoolH|PoolT], Guess, Correct, Regular, [PoolH | NewPool1]) :-
     PoolH \= Guess,
     check_answer(Guess, PoolH, Correct, Regular),
-    update_pool(PoolT, Guess, Correct, Regular, NewPool1).
+    update_pool(PoolT, Guess, Correct, Regular, NewPool1),
+    !.
 
 update_pool([_|PoolT], Guess, Correct, Regular, NewPool) :-
     update_pool(PoolT, Guess, Correct, Regular, NewPool).
