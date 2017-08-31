@@ -24,13 +24,13 @@ make_guess(Pool, Correct, Regular, Guess) :-
  * code and Correct and Regular were the feedback for these guesses.
  */
 make_guess_aux(WholePool, [Guess], Correct, Regular, Guess, Score) :-
-    update_pool(WholePool, Guess, Correct, Regular, NewPool),
+    pool:update_pool(WholePool, Guess, Correct, Regular, NewPool),
     length(NewPool, Score),
     !.
 
 make_guess_aux(WholePool, [PoolH|PoolT], Correct, Regular, PoolH, Score) :-
     make_guess_aux(WholePool, PoolT, Correct, Regular, _, Score1),
-    update_pool(WholePool, PoolH, Correct, Regular, NewPool),
+    pool:update_pool(WholePool, PoolH, Correct, Regular, NewPool),
     length(NewPool, Score),
     Score =< Score1,
     !.
