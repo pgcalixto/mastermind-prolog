@@ -42,7 +42,7 @@ play :-
     FirstGuess = [1,2,3,4],
     first_try(Correct, Regular),
     (
-     (Correct = 4, Regular = 0, write('ganhei'), halt);
+     (Correct = 4, Regular = 0, write('ganhei'), nl, halt);
      (
       pool:pool(Pool),
       pool:update_pool(Pool, FirstGuess, Correct, Regular, NewPool),
