@@ -21,13 +21,17 @@
 #include <limits.h>
 
 void usage(char *me) {
-  fprintf(stderr, "Usage: %s <name> [<word>]\n", me);
+  fprintf(stderr, "Usage: %s <swipl-script> [<word>]\n\n", me);
+  fprintf(stderr, "<swipl-script>: SWI Prolog script to be run\n");
+  fprintf(stderr, "<word>: (optional) password to be guessed\n");
+  fprintf(stderr, "(If no <word> is given, a random one is generated)\n");
 }
 
 void randomPattern(char *word, int nposs, int nword) {
   // Generate a random pattern
   // of size nword
-  // from the numbers 1 to nposs
+  // from the numbers 1 to nposs, without repetition
+  // nposs must be larger than nword
   srandom(time(NULL));
   char possible[nposs];
   int i;
@@ -193,6 +197,20 @@ int main(int argc, char *argv[])
       }
       for (int g = 0; g < NWORD; g++) {
 	chute[g] = buf[groupArray[g+1].rm_so];
+	for (int h = 0; h < g; h++) {
+	  // verifies if there are repated numbers
+	  if (chute[h] == chute[g]) {
+	    chute[0] = '0';
+	    break;
+	  }
+	}
+	if (chute[0] == '0') {
+	  break;
+	}
+      }
+      if (chute[0] == '0') {
+	printf("números repetidos\n");
+	break;
       }
       //printf("chute: %4.4s\n", chute);
       // Score
