@@ -5,6 +5,7 @@ dist: trusty
 before_script:
   - sudo apt-get -qq update
   - sudo apt-get install -qq swi-prolog-nox
+  - gcc aval4.c -o aval4
 
 script:
   - swipl -s test.pl
