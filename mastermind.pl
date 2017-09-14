@@ -2,7 +2,6 @@
 
 :- module(mastermind, [play/0]).
 
-:- use_module(answer_generator).
 :- use_module(check_answer).
 :- use_module(player).
 :- use_module(pool).
