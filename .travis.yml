@@ -16,4 +16,4 @@ before_script:
 
 script:
   - swipl -s test.pl
-  - for run in {1..100}; do ./aval4 ./mastermind.pl
+  - for run in {1..100}; do ./aval4 ./mastermind.pl; done
