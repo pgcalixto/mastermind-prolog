@@ -2,9 +2,18 @@
 sudo: required
 dist: trusty
 
+before_install:
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+
+install:
+  - sudo apt-get install -qq gcc-5
+  - sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 90
+
 before_script:
-  - sudo apt-get -qq update
   - sudo apt-get install -qq swi-prolog-nox
+  - gcc aval4.c -o aval4
 
 script:
   - swipl -s test.pl
+  - for run in {1..100}; do ./aval4 ./mastermind.pl; done
