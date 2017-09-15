@@ -31,5 +31,6 @@ make_guess_aux(WholePool, [PoolH|PoolT], Correct, Regular, Guess, Score) :-
     make_guess_aux(WholePool, PoolT, Correct, Regular, Guess1, Score1),
     pool:update_pool(WholePool, PoolH, Correct, Regular, NewPool),
     length(NewPool, Score2),
-    ((Score2 =< Score1, Guess = PoolH, Score = Score2);
-     (Score = Score1, Guess = Guess1)).
+    (   Score2 =< Score1, Guess = PoolH, Score = Score2
+    ;   Score = Score1, Guess = Guess1
+    ).
