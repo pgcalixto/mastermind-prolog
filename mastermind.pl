@@ -2,7 +2,6 @@
 
 :- module(mastermind, [play/0]).
 
-:- use_module(answer_generator).
 :- use_module(check_answer).
 :- use_module(player).
 :- use_module(pool).
@@ -43,7 +42,7 @@ play :-
     FirstGuess = [1,2,3,4],
     first_try(Correct, Regular),
     (
-     (Correct = 4, Regular = 0, write('ganhei'), halt);
+     (Correct = 4, Regular = 0, write('ganhei'), nl, halt);
      (
       pool:pool(Pool),
       pool:update_pool(Pool, FirstGuess, Correct, Regular, NewPool),
